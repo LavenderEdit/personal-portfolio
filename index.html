@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan Santos Pimentel Lalangui - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Color Palette */
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-color: #2563eb;
+            /* Royal Blue */
+            --accent-hover: #1d4ed8;
+            --border-color: #e2e8f0;
+            --tag-bg: #eff6ff;
+            --tag-text: #1d4ed8;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Layout Utility */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Language Toggle Button */
+        .lang-toggle-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .lang-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--accent-color);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            background: var(--tag-bg);
+            transform: translateY(-2px);
+        }
+
+        /* Header / Hero Section */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-top: 40px;
+            position: relative;
+        }
+
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--bg-card);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #cbd5e1;
+            /* Placeholder color */
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            letter-spacing: -0.025em;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-item:hover {
+            color: var(--accent-color);
+        }
+
+        /* Generic Section Styles */
+        section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--bg-body);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            color: var(--accent-color);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-tag {
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Experience & Education Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 30px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            border: 2px solid var(--bg-card);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .job-date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background: var(--bg-body);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 500;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .job-company {
+            color: var(--accent-color);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .job-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .job-details {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .job-details li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .job-details li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        .job-details strong {
+            color: var(--text-primary);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--bg-body);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgb(0 0 0 / 0.1);
+            background: #ffffff;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .project-type {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .tech-tag {
+            font-size: 0.75rem;
+            background: #e2e8f0;
+            color: #475569;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer-actions {
+            text-align: center;
+            margin-top: 40px;
+            padding-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--tag-bg);
+        }
+
+        @media print {
+
+            .lang-toggle-container,
+            .footer-actions {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            section {
+                box-shadow: none;
+                border: none;
+                padding: 10px 0;
+                margin-bottom: 20px;
+            }
+
+            .job-date {
+                border: 1px solid #ccc;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .job-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="lang-toggle-container">
+            <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">
+                <i class="fa-solid fa-globe"></i> <span id="langLabel">ESPAÑOL</span>
+            </button>
+        </div>
+
+        <header class="header">
+            <div class="profile-img-container">
+                <img src="./img/Jonsito.jpg" alt="Profile Picture" class="profile-img">
+            </div>
+            <h1 class="name">Juan Santos Pimentel Lalangui</h1>
+            <p class="title" data-i18n="role_title">Software Developer & Cybersecurity Enthusiast</p>
+
+            <div class="contact-info">
+                <a href="mailto:gercermagden@gmail.com" class="contact-item">
+                    <i class="fa-solid fa-envelope"></i> gercermagden@gmail.com
+                </a>
+                <a href="#" class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i> Lima, Peru
+                </a>
+                <a href="#" class="contact-item">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </header>
+
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-user section-icon"></i> <span
+                    data-i18n="about_me_title">About Me</span></h2>
+            <p style="color: var(--text-secondary);" data-i18n="about_me_text">
+                Dedicated software developer with a strong technical background in Java, PHP, and modern JavaScript
+                frameworks. Passionate about cybersecurity and backend architecture. I recently completed advanced
+                specializations in Cloud Computing and Ethical Hacking. Experienced in building full-stack applications
+                and secure backend systems.
+            </p>
+        </section>
+
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-code section-icon"></i> <span
+                    data-i18n="skills_title">Technical Skills</span></h2>
+            <div class="skills-grid">
+                <div class="skill-tag">Java / Spring</div>
+                <div class="skill-tag">PHP / Laravel</div>
+                <div class="skill-tag">JavaScript / TS</div>
+                <div class="skill-tag">NestJS</div>
+                <div class="skill-tag">React / Angular</div>
+                <div class="skill-tag">SQL / MySQL</div>
+                <div class="skill-tag">SOAP / REST APIs</div>
+                <div class="skill-tag">Cybersecurity</div>
+                <div class="skill-tag">AWS / Azure</div>
+                <div class="skill-tag">Git / GitHub</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-briefcase section-icon"></i> <span
+                    data-i18n="exp_title">Work Experience</span></h2>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <span class="job-title" data-i18n="job1_title">Backend Developer Intern</span>
+                            <span class="job-company"> | Lubricantes Claudia</span>
+                        </div>
+                        <span class="job-date" data-i18n="job1_date">Aug 2025 - Dec 2025</span>
+                    </div>
+                    <ul class="job-details">
+                        <li data-i18n="job1_desc_1"><strong>System Migration:</strong> Architected and executed the
+                            migration of a legacy billing system to a microservices architecture using Spring Boot.</li>
+                        <li data-i18n="job1_desc_2"><strong>Data Security:</strong> Implemented secure XML queue
+                            services for high-volume data ingestion.</li>
+                        <li data-i18n="job1_desc_3"><strong>Optimization:</strong> Refactored SQL queries, significantly
+                            increasing database response speed and system operability.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <span class="job-title" data-i18n="job2_title">Software Developer Intern</span>
+                            <span class="job-company"> | Digital Buho S.A.C</span>
+                        </div>
+                        <span class="job-date" data-i18n="job2_date">Mar 2025 - Jul 2025</span>
+                    </div>
+                    <ul class="job-details">
+                        <li data-i18n="job2_desc_1"><strong>Automation:</strong> Developed custom web scrapers and
+                            automation tools to aggregate data from third-party sources.</li>
+                        <li data-i18n="job2_desc_2"><strong>API Integration:</strong> Managed complex JSON data
+                            structures and consumed external APIs to streamline business workflows.</li>
+                        <li data-i18n="job2_desc_3"><strong>Client Solutions:</strong> Delivered tailored software
+                            design tasks based on specific client requirements.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <span class="job-title" data-i18n="job3_title">Full Stack Intern</span>
+                            <span class="job-company"> | Lubricantes Claudia</span>
+                        </div>
+                        <span class="job-date" data-i18n="job3_date">Aug 2024 - Dec 2024</span>
+                    </div>
+                    <ul class="job-details">
+                        <li data-i18n="job3_desc_1"><strong>Electronic Invoicing:</strong> Designed and developed a
+                            comprehensive web-based invoicing system compliant with SUNAT standards.</li>
+                        <li data-i18n="job3_desc_2"><strong>Core Modules:</strong> Built advanced modules for inventory
+                            management, sales tracking, and client administration.</li>
+                        <li data-i18n="job3_desc_3"><strong>Stack:</strong> Java, JSP, Hibernate/JPA, and MySQL.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-laptop-code section-icon"></i> <span
+                    data-i18n="projects_title">Projects</span></h2>
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-title" data-i18n="proj_drm_title">Patreon DRM Security</span>
+                        <span class="project-type" data-i18n="type_security">Security</span>
+                    </div>
+                    <p class="project-desc" data-i18n="proj_drm_desc">
+                        A robust backend security system designed to protect digital content for Patreon creators.
+                        Implements advanced authentication and content encryption.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tech-tag">NestJS</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">JWT</span>
+                        <span class="tech-tag" data-i18n="date_nov_2025">Nov 2025</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-title">GestorSimple</span>
+                        <span class="project-type" data-i18n="type_personal">Personal</span>
+                    </div>
+                    <p class="project-desc" data-i18n="proj_gestor_desc">
+                        A comprehensive ERP web application for business management. Features include inventory control,
+                        supplier management, sales tracking, and multi-role user authentication.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tech-tag">PHP 8</span>
+                        <span class="tech-tag">MVC</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Bootstrap</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-title" data-i18n="proj_soap_title">SOAP Client Manager</span>
+                        <span class="project-type" data-i18n="type_backend">Backend</span>
+                    </div>
+                    <p class="project-desc" data-i18n="proj_soap_desc">
+                        Java-based application implementing the SOAP protocol for secure exchange of client information.
+                        Handles XML parsing and strict data validation.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">SOAP</span>
+                        <span class="tech-tag">XML</span>
+                        <span class="tech-tag">Maven</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-title">PokeGuessr</span>
+                        <span class="project-type" data-i18n="type_personal">Personal</span>
+                    </div>
+                    <p class="project-desc" data-i18n="proj_poke_desc">
+                        Interactive web game interacting with external APIs. Users guess the character based on
+                        silhouettes. Optimized for performance and mobile responsiveness.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML5/CSS3</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-graduation-cap section-icon"></i> <span
+                    data-i18n="edu_title">Education & Certifications</span></h2>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <span class="job-title" data-i18n="edu_cloud_title">Cloud Computing Specialization (AWS - Azure
+                            - GCP)</span>
+                        <span class="job-date" data-i18n="date_oct_nov_2025">Oct 2025 - Nov 2025</span>
+                    </div>
+                    <span class="job-company">Universidad Nacional de Ingeniería (UNI) - INICTEL</span>
+                    <p class="job-desc" data-i18n="edu_cloud_desc">Comprehensive training in cloud infrastructure,
+                        storage services, identity management, and cost administration across major providers.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <span class="job-title" data-i18n="edu_hack_title">Cybersecurity & Ethical Hacking</span>
+                        <span class="job-date" data-i18n="date_oct_2025">Oct 2025</span>
+                    </div>
+                    <span class="job-company">Hacker Mentor Academy</span>
+                    <p class="job-desc" data-i18n="edu_hack_desc">Intensive training in vulnerability assessment,
+                        penetration testing, and network security protocols.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <span class="job-title" data-i18n="edu_tech_title">Technical Degree in Software
+                            Development</span>
+                        <span class="job-date">2023 - 2025</span>
+                    </div>
+                    <span class="job-company" data-i18n="edu_tech_school">Graduate | Peru</span>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <span class="job-title" data-i18n="edu_eng_title">English Program (Advanced)</span>
+                        <span class="job-date">2021</span>
+                    </div>
+                    <span class="job-company">ICPNA (Instituto Cultural Peruano Norteamericano)</span>
+                    <p class="job-desc" data-i18n="edu_eng_desc">Advanced Writing & Speaking Certification</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer-actions">
+            <button onclick="window.print()" class="btn btn-primary">
+                <i class="fa-solid fa-print"></i> <span data-i18n="btn_print">Download PDF / Print</span>
+            </button>
+            <a href="mailto:gercermagden@gmail.com" class="btn btn-outline">
+                <i class="fa-solid fa-paper-plane"></i> <span data-i18n="btn_hire">Hire Me</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                role_title: "Software Developer & Cybersecurity Enthusiast",
+                about_me_title: "About Me",
+                about_me_text: "Dedicated software developer with a strong technical background in Java, PHP, and modern JavaScript frameworks. Passionate about cybersecurity and backend architecture. I recently completed advanced specializations in Cloud Computing and Ethical Hacking. Experienced in building full-stack applications and secure backend systems.",
+                skills_title: "Technical Skills",
+
+                exp_title: "Work Experience",
+                job1_title: "Backend Developer Intern",
+                job1_date: "Aug 2025 - Dec 2025",
+                job1_desc_1: "<strong>System Migration:</strong> Architected and executed the migration of a legacy billing system to a microservices architecture using Spring Boot.",
+                job1_desc_2: "<strong>Data Security:</strong> Implemented secure XML queue services for high-volume data ingestion.",
+                job1_desc_3: "<strong>Optimization:</strong> Refactored SQL queries, significantly increasing database response speed and system operability.",
+
+                job2_title: "Software Developer Intern",
+                job2_date: "Mar 2025 - Jul 2025",
+                job2_desc_1: "<strong>Automation:</strong> Developed custom web scrapers and automation tools to aggregate data from third-party sources.",
+                job2_desc_2: "<strong>API Integration:</strong> Managed complex JSON data structures and consumed external APIs to streamline business workflows.",
+                job2_desc_3: "<strong>Client Solutions:</strong> Delivered tailored software design tasks based on specific client requirements.",
+
+                job3_title: "Full Stack Intern",
+                job3_date: "Aug 2024 - Dec 2024",
+                job3_desc_1: "<strong>Electronic Invoicing:</strong> Designed and developed a comprehensive web-based invoicing system compliant with SUNAT standards.",
+                job3_desc_2: "<strong>Core Modules:</strong> Built advanced modules for inventory management, sales tracking, and client administration.",
+                job3_desc_3: "<strong>Stack:</strong> Java, JSP, Hibernate/JPA, and MySQL.",
+
+                projects_title: "Projects",
+
+                proj_drm_title: "Patreon DRM Security",
+                type_security: "Security",
+                proj_drm_desc: "A robust backend security system designed to protect digital content for Patreon creators. Implements advanced authentication and content encryption. Developed during the first two weeks of November.",
+                date_nov_2025: "Nov 2025",
+
+                type_personal: "Personal",
+                proj_gestor_desc: "A comprehensive ERP web application for business management. Features include inventory control, supplier management, sales tracking, and multi-role user authentication.",
+
+                proj_soap_title: "SOAP Client Manager",
+                type_backend: "Backend",
+                proj_soap_desc: "Java-based application implementing the SOAP protocol for secure exchange of client information. Handles XML parsing and strict data validation.",
+
+                proj_poke_desc: "Interactive web game interacting with external APIs. Users guess the character based on silhouettes. Optimized for performance and mobile responsiveness.",
+
+                edu_title: "Education & Certifications",
+                edu_cloud_title: "Cloud Computing Specialization (AWS - Azure - GCP)",
+                date_oct_nov_2025: "Oct 2025 - Nov 2025",
+                edu_cloud_desc: "Comprehensive training in cloud infrastructure, storage services, identity management, and cost administration across major providers.",
+
+                edu_hack_title: "Cybersecurity & Ethical Hacking",
+                date_oct_2025: "Oct 2025",
+                edu_hack_desc: "Intensive training in vulnerability assessment, penetration testing, and network security protocols.",
+
+                edu_tech_title: "Technical Degree in Software Development",
+                edu_tech_school: "Graduate | Peru",
+
+                edu_eng_title: "English Program (Advanced)",
+                edu_eng_desc: "Advanced Writing & Speaking Certification",
+
+                btn_print: "Download PDF / Print",
+                btn_hire: "Hire Me"
+            },
+            es: {
+                role_title: "Desarrollador de Software & Entusiasta de Ciberseguridad",
+                about_me_title: "Sobre Mí",
+                about_me_text: "Desarrollador de software dedicado con una sólida base técnica en Java, PHP y frameworks modernos de JavaScript. Apasionado por la ciberseguridad y la arquitectura backend. Recientemente completé especializaciones avanzadas en Cloud Computing y Hacking Ético. Experiencia en la construcción de aplicaciones full-stack y sistemas backend seguros.",
+                skills_title: "Habilidades Técnicas",
+
+                exp_title: "Experiencia Laboral",
+                job1_title: "Pasante de Desarrollo Backend",
+                job1_date: "Ago 2025 - Dic 2025",
+                job1_desc_1: "<strong>Migración de Sistema:</strong> Diseñé y ejecuté la migración de un sistema de facturación heredado a una arquitectura de microservicios usando Spring Boot.",
+                job1_desc_2: "<strong>Seguridad de Datos:</strong> Implementé servicios de colas XML seguros para la ingesta de datos de gran volumen.",
+                job1_desc_3: "<strong>Optimización:</strong> Refactoricé consultas SQL, aumentando significativamente la velocidad de respuesta de la base de datos y la operatividad del sistema.",
+
+                job2_title: "Pasante de Desarrollo de Software",
+                job2_date: "Mar 2025 - Jul 2025",
+                job2_desc_1: "<strong>Automatización:</strong> Desarrollé scrapers web personalizados y herramientas de automatización para agregar datos de fuentes de terceros.",
+                job2_desc_2: "<strong>Integración de API:</strong> Gestioné estructuras de datos JSON complejas y consumí API externas para agilizar los flujos de trabajo empresariales.",
+                job2_desc_3: "<strong>Soluciones para Clientes:</strong> Entregué tareas de diseño de software personalizadas basadas en requisitos específicos del cliente.",
+
+                job3_title: "Pasante Full Stack",
+                job3_date: "Ago 2024 - Dic 2024",
+                job3_desc_1: "<strong>Facturación Electrónica:</strong> Diseñé y desarrollé un sistema de facturación web integral que cumple con los estándares de la SUNAT.",
+                job3_desc_2: "<strong>Módulos Principales:</strong> Construí módulos avanzados para la gestión de inventarios, seguimiento de ventas y administración de clientes.",
+                job3_desc_3: "<strong>Stack:</strong> Java, JSP, Hibernate/JPA y MySQL.",
+
+                projects_title: "Proyectos",
+
+                proj_drm_title: "Sistema de Seguridad DRM Patreon",
+                type_security: "Seguridad",
+                proj_drm_desc: "Un sistema de seguridad backend robusto diseñado para proteger contenido digital para creadores de Patreon. Implementa autenticación avanzada y encriptación de contenido. Desarrollado durante las dos primeras semanas de noviembre.",
+                date_nov_2025: "Nov 2025",
+
+                type_personal: "Personal",
+                proj_gestor_desc: "Una aplicación web ERP completa para la gestión empresarial. Incluye control de inventarios, gestión de proveedores, seguimiento de ventas y autenticación de usuarios con múltiples roles.",
+
+                proj_soap_title: "Gestor de Clientes SOAP",
+                type_backend: "Backend",
+                proj_soap_desc: "Aplicación basada en Java que implementa el protocolo SOAP para el intercambio seguro de información de clientes. Maneja análisis XML y validación estricta de datos.",
+
+                proj_poke_desc: "Juego web interactivo que interactúa con APIs externas. Los usuarios adivinan el personaje basándose en siluetas. Optimizado para rendimiento y respuesta móvil.",
+
+                edu_title: "Educación y Certificaciones",
+                edu_cloud_title: "Especialización en Cloud Computing (AWS - Azure - GCP)",
+                date_oct_nov_2025: "Oct 2025 - Nov 2025",
+                edu_cloud_desc: "Formación integral en infraestructura en la nube, servicios de almacenamiento, gestión de identidades y administración de costos en los principales proveedores.",
+
+                edu_hack_title: "Ciberseguridad y Ethical Hacking",
+                date_oct_2025: "Oct 2025",
+                edu_hack_desc: "Entrenamiento intensivo en evaluación de vulnerabilidades, pruebas de penetración y protocolos de seguridad de red.",
+
+                edu_tech_title: "Título Técnico en Desarrollo de Software",
+                edu_tech_school: "Egresado | Perú",
+
+                edu_eng_title: "Programa de Inglés (Avanzado)",
+                edu_eng_desc: "Certificación Avanzada en Escritura y Habla",
+
+                btn_print: "Descargar PDF / Imprimir",
+                btn_hire: "Contrátame"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            updateContent();
+        }
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    element.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            const langLabel = document.getElementById('langLabel');
+            langLabel.innerText = currentLang === 'en' ? 'ESPAÑOL' : 'ENGLISH';
+        }
+
+        if (navigator.language.startsWith('es')) {
+            toggleLanguage();
+        }
+    </script>
+</body>
+
+</html>
