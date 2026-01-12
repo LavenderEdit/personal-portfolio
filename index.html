@@ -4,15 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Hola, soy Juan Santos Pimentel. Desarrollador de Software apasionado con una base sólida en arquitectura backend y ciberseguridad. Bienvenido a mi portafolio.">
+    <meta property="og:title" content="Juan Santos Pimentel Lalangui - Portfolio">
+    <meta property="og:description"
+        content="Hola, soy Juan Santos Pimentel. Desarrollador de Software especializado en Spring Boot, Seguridad y Cloud Computing. Explora mis proyectos y certificaciones.">
+    <meta property="og:image" content="./img/avatar/Jonsito.jpg">
+    <meta property="og:type" content="website">
     <title>Juan Santos Pimentel Lalangui - Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="./img/logos/Logo_STKH_BR.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
     <style>
-        /* --- CSS VARIABLES --- */
         :root {
             --primary: #2563eb;
             --primary-dark: #1e40af;
@@ -29,7 +35,6 @@
             --container-width: 1024px;
         }
 
-        /* --- RESET & BASE --- */
         * {
             margin: 0;
             padding: 0;
@@ -59,7 +64,6 @@
             display: block;
         }
 
-        /* --- LAYOUT UTILS --- */
         .container {
             max-width: var(--container-width);
             margin: 0 auto;
@@ -69,7 +73,6 @@
         .section {
             margin-bottom: 60px;
             scroll-margin-top: 100px;
-            /* For sticky nav offset */
         }
 
         .section-header {
@@ -93,7 +96,6 @@
             font-size: 1.25rem;
         }
 
-        /* --- NAVIGATION --- */
         .navbar {
             position: sticky;
             top: 0;
@@ -150,7 +152,6 @@
             background: #e0e7ff;
         }
 
-        /* --- HERO SECTION --- */
         .hero {
             text-align: center;
             padding: 60px 0 40px;
@@ -181,6 +182,7 @@
             margin-bottom: 8px;
             background: linear-gradient(135deg, var(--primary), #1d4ed8);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -218,7 +220,6 @@
             transform: translateY(-2px);
         }
 
-        /* --- ABOUT CARD --- */
         .card {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -233,7 +234,6 @@
             line-height: 1.8;
         }
 
-        /* --- SKILLS GRID --- */
         .skills-wrapper {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -272,7 +272,6 @@
             font-weight: 600;
         }
 
-        /* --- TIMELINE (EXPERIENCE & EDUCATION) --- */
         .timeline {
             position: relative;
             padding-left: 20px;
@@ -392,7 +391,6 @@
             background: #dbeafe;
         }
 
-        /* --- PROJECTS GRID --- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -536,7 +534,6 @@
             background: var(--primary-dark);
         }
 
-        /* --- MODAL FOR IMAGES --- */
         .modal {
             display: none;
             position: fixed;
@@ -566,7 +563,6 @@
             cursor: pointer;
         }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .navbar .container {
                 flex-direction: column;
@@ -593,19 +589,91 @@
             .p-links,
             .print-btn,
             .lang-btn,
-            .cert-link {
+            .cert-link,
+            .project-gallery,
+            .footer,
+            .close-modal {
                 display: none !important;
-            }
-
-            .section {
-                margin-bottom: 30px;
-                page-break-inside: avoid;
             }
 
             body {
                 background: white;
-                color: black;
+                color: #000;
                 padding: 0;
+                font-size: 11pt;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 40px;
+                margin: 0;
+            }
+
+            .hero {
+                padding: 20px 0;
+                text-align: left;
+                border-bottom: 2px solid #000;
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .profile-img-wrapper {
+                width: 100px;
+                height: 100px;
+                margin: 0;
+                border: none;
+                box-shadow: none;
+            }
+
+            .hero-name {
+                font-size: 24pt;
+                margin: 0;
+                background: none;
+                -webkit-text-fill-color: black;
+                color: black;
+            }
+
+            .hero-role {
+                font-size: 14pt;
+                margin: 5px 0 10px;
+                color: #333;
+            }
+
+            .contact-bar {
+                justify-content: flex-start;
+                gap: 15px;
+                margin: 0;
+            }
+
+            .contact-pill {
+                padding: 0;
+                border: none;
+                box-shadow: none;
+                background: none;
+                font-size: 10pt;
+            }
+
+            .section {
+                margin-bottom: 25px;
+                page-break-inside: avoid;
+            }
+
+            .section-header {
+                border-bottom: 1px solid #333;
+                margin-bottom: 15px;
+                padding-bottom: 5px;
+            }
+
+            .section-title {
+                font-size: 14pt;
+                text-transform: uppercase;
+            }
+
+            .section-icon {
+                display: none;
             }
 
             .card,
@@ -613,12 +681,140 @@
             .project-card,
             .skill-category {
                 box-shadow: none;
-                border: 1px solid #ccc;
+                border: none;
+                padding: 0;
+                background: none;
             }
 
-            a {
-                text-decoration: none;
-                color: black;
+            .skills-wrapper {
+                display: block;
+            }
+
+            .skill-category {
+                margin-bottom: 10px;
+                padding: 0;
+                border: none;
+            }
+
+            .skill-cat-title {
+                font-weight: bold;
+                font-size: 11pt;
+                margin-bottom: 5px;
+                display: inline-block;
+                width: 120px;
+            }
+
+            .skill-tags {
+                display: inline;
+            }
+
+            .tag {
+                background: none;
+                border: none;
+                padding: 0;
+                margin-right: 8px;
+                color: #000;
+                font-weight: normal;
+            }
+
+            .tag::after {
+                content: ",";
+            }
+
+            .tag:last-child::after {
+                content: "";
+            }
+
+            .timeline {
+                padding: 0;
+            }
+
+            .timeline::before,
+            .timeline-dot {
+                display: none;
+            }
+
+            .timeline-item {
+                margin-bottom: 15px;
+                padding: 0;
+            }
+
+            .t-header {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 2px;
+            }
+
+            .t-role {
+                font-size: 12pt;
+            }
+
+            .t-company {
+                font-size: 11pt;
+                font-style: italic;
+                color: #333;
+            }
+
+            .t-date {
+                background: none;
+                border: none;
+                color: #000;
+                padding: 0;
+                font-size: 10pt;
+            }
+
+            .t-desc {
+                margin-top: 5px;
+                font-size: 10pt;
+            }
+
+            .projects-grid {
+                display: block;
+            }
+
+            .project-card {
+                display: block;
+                margin-bottom: 15px;
+                page-break-inside: avoid;
+                border-bottom: 1px dotted #ccc;
+                padding-bottom: 10px;
+            }
+
+            .project-card:last-child {
+                border: none;
+            }
+
+            .p-header {
+                justify-content: flex-start;
+                gap: 10px;
+                margin-bottom: 2px;
+            }
+
+            .p-title {
+                font-size: 12pt;
+            }
+
+            .p-badge {
+                background: none;
+                border: 1px solid #000;
+                color: #000;
+                padding: 1px 4px;
+                font-size: 8pt;
+            }
+
+            .p-desc {
+                color: #000;
+                margin-bottom: 5px;
+                font-size: 10pt;
+            }
+
+            .p-tech span {
+                background: none;
+                color: #333;
+                padding: 0;
+                margin-right: 5px;
+                font-style: italic;
+                font-size: 9pt;
             }
         }
     </style>
@@ -646,23 +842,24 @@
         <div class="profile-img-wrapper">
             <img src="./img/avatar/Jonsito.jpg" alt="Juan Santos Pimentel" class="profile-img">
         </div>
-        <h1 class="hero-name">Juan Santos Pimentel Lalangui</h1>
-        <p class="hero-role" data-i18n="role_title">Software Developer & Cybersecurity Enthusiast</p>
+        <div style="flex-grow: 1;">
+            <h1 class="hero-name">Juan Santos Pimentel Lalangui</h1>
+            <p class="hero-role" data-i18n="role_title">Software Developer & Cybersecurity Enthusiast</p>
 
-        <div class="contact-bar">
-            <a href="mailto:gercermagden@gmail.com" class="contact-pill">
-                <i class="fa-solid fa-envelope"></i> gercermagden@gmail.com
-            </a>
-            <div class="contact-pill">
-                <i class="fa-solid fa-location-dot"></i> Lima, Peru
+            <div class="contact-bar">
+                <a href="mailto:gercermagden@gmail.com" class="contact-pill">
+                    <i class="fa-solid fa-envelope"></i> gercermagden@gmail.com
+                </a>
+                <div class="contact-pill">
+                    <i class="fa-solid fa-location-dot"></i> Lima, Peru
+                </div>
+                <a href="https://github.com/LavenderEdit" target="_blank" class="contact-pill">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <a href="#" target="_blank" class="contact-pill">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                </a>
             </div>
-            <a href="https://github.com/LavenderEdit" target="_blank" class="contact-pill">
-                <i class="fa-brands fa-github"></i> GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/juan-santos-pimentel-lalangui-873a0a2a9" target="_blank"
-                class="contact-pill">
-                <i class="fa-brands fa-linkedin"></i> LinkedIn
-            </a>
         </div>
     </header>
 
@@ -697,7 +894,7 @@
                 <div class="skill-cat-title"><i class="fa-solid fa-server"></i> Backend</div>
                 <div class="skill-tags">
                     <span class="tag">Java (Spring Boot)</span>
-                    <span class="tag">PHP (Laravel)</span>
+                    <span class="tag">PHP (Laravel/Native)</span>
                     <span class="tag">NestJS</span>
                     <span class="tag">Node.js</span>
                     <span class="tag">REST & SOAP APIs</span>
@@ -824,6 +1021,31 @@
 
             <div class="project-card">
                 <div class="project-gallery" onclick="openModal(this)">
+                    <img src="./img/projects/Portfolio Hub - Home.png" alt="Portfolio Hub" class="project-img">
+                </div>
+                <div class="project-content">
+                    <div class="p-header">
+                        <div class="p-title">Portfolio Hub</div>
+                        <span class="p-badge">Spring Boot</span>
+                    </div>
+                    <p class="p-desc" data-i18n="proj_hub_desc">
+                        A dynamic portfolio backend system. Built with Spring Boot to manage project data,
+                        authentication, and content serving.
+                    </p>
+                    <div class="p-tech">
+                        <span>Java 17</span><span>Spring Boot</span><span>MySQL</span><span>Docker</span>
+                    </div>
+                    <div class="p-links">
+                        <a href="https://github.com/LionelPastranaMK500/Portfolio-Hub.git" target="_blank"
+                            class="btn-github">
+                            <i class="fa-brands fa-github"></i> GitHub Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-gallery" onclick="openModal(this)">
                     <img src="./img/projects/Bandwitch DRM Patreon.png" alt="Patreon DRM" class="project-img">
                 </div>
                 <div class="project-content">
@@ -877,13 +1099,12 @@
             </div>
 
             <div class="project-card">
-                <div class="project-gallery"
-                    style="background: #e2e8f0; display:flex; align-items:center; justify-content:center;">
-                    <i class="fa-solid fa-layer-group" style="font-size: 3rem; color:#64748b;"></i>
+                <div class="project-gallery" onclick="openModal(this)">
+                    <img src="./img/projects/Gestor Venta - Dashboard.png" alt="Gestor Venta" class="project-img">
                 </div>
                 <div class="project-content">
                     <div class="p-header">
-                        <div class="p-title">GestorSimple</div>
+                        <div class="p-title">Gestor Venta (Simple)</div>
                         <span class="p-badge">Monolith</span>
                     </div>
                     <p class="p-desc" data-i18n="proj_gestor_desc">
@@ -902,9 +1123,8 @@
             </div>
 
             <div class="project-card">
-                <div class="project-gallery"
-                    style="background: #f1f5f9; display:flex; align-items:center; justify-content:center;">
-                    <i class="fa-solid fa-server" style="font-size: 3rem; color:#94a3b8;"></i>
+                <div class="project-gallery" onclick="openModal(this)">
+                    <img src="./img/projects/SOAP API - POST.png" alt="SOAP API" class="project-img">
                 </div>
                 <div class="project-content">
                     <div class="p-header">
@@ -920,6 +1140,31 @@
                     </div>
                     <div class="p-links">
                         <a href="https://github.com/LavenderEdit/soap-clientes" target="_blank" class="btn-github">
+                            <i class="fa-brands fa-github"></i> GitHub Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-gallery" onclick="openModal(this)">
+                    <img src="./img/projects/PokeGuessr - Home.png" alt="PokeGuessr" class="project-img">
+                </div>
+                <div class="project-content">
+                    <div class="p-header">
+                        <div class="p-title">PokeGuessr</div>
+                        <span class="p-badge">Game</span>
+                    </div>
+                    <p class="p-desc" data-i18n="proj_poke_desc">
+                        Interactive web game interacting with external APIs. Users guess the character based on
+                        silhouettes.
+                        Optimized for performance and mobile responsiveness.
+                    </p>
+                    <div class="p-tech">
+                        <span>JavaScript</span><span>HTML5</span><span>PokeAPI</span>
+                    </div>
+                    <div class="p-links">
+                        <a href="https://github.com/LavenderEdit/pokeguessr" target="_blank" class="btn-github">
                             <i class="fa-brands fa-github"></i> GitHub Code
                         </a>
                     </div>
@@ -1061,6 +1306,10 @@
                 proj_soap_title: "SOAP Client Manager",
                 proj_soap_desc: "Java-based application implementing the SOAP protocol for secure exchange of client information. Handles XML parsing and strict data validation.",
 
+                proj_poke_desc: "Interactive web game interacting with external APIs. Users guess the character based on silhouettes. Optimized for performance and mobile responsiveness.",
+
+                proj_hub_desc: "A dynamic portfolio backend system. Built with Spring Boot to manage project data, authentication, and content serving.",
+
                 edu_title: "Education & Certifications",
                 edu_cloud_title: "Cloud Computing (AWS - Azure - GCP)",
                 edu_cloud_desc: "Training in cloud infrastructure, storage services, identity management, and cost administration.",
@@ -1122,6 +1371,10 @@
 
                 proj_soap_title: "Gestor de Clientes SOAP",
                 proj_soap_desc: "Aplicación Java que implementa el protocolo SOAP para el intercambio seguro de información. Maneja análisis XML y validación estricta.",
+
+                proj_poke_desc: "Juego web interactivo conectado a APIs externas. Los usuarios adivinan el personaje basado en siluetas. Optimizado para móviles.",
+
+                proj_hub_desc: "Sistema backend dinámico para portafolios. Construido con Spring Boot para gestionar datos de proyectos, autenticación y servicio de contenido.",
 
                 edu_title: "Educación y Certificaciones",
                 edu_cloud_title: "Cloud Computing (AWS - Azure - GCP)",
