@@ -15,7 +15,7 @@
     <link rel="icon" type="image/x-icon" href="./img/logos/Logo_STKH_BR.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
     <style>
@@ -96,6 +96,7 @@
             font-size: 1.25rem;
         }
 
+        /* Navbar */
         .navbar {
             position: sticky;
             top: 0;
@@ -152,6 +153,7 @@
             background: #e0e7ff;
         }
 
+        /* Hero / Header */
         .hero {
             text-align: center;
             padding: 60px 0 40px;
@@ -220,6 +222,7 @@
             transform: translateY(-2px);
         }
 
+        /* Cards & Text */
         .card {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -234,6 +237,7 @@
             line-height: 1.8;
         }
 
+        /* Skills */
         .skills-wrapper {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -272,6 +276,7 @@
             font-weight: 600;
         }
 
+        /* Timeline (Experience & Education) */
         .timeline {
             position: relative;
             padding-left: 20px;
@@ -391,6 +396,7 @@
             background: #dbeafe;
         }
 
+        /* Projects */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -508,7 +514,7 @@
             background: #000;
         }
 
-        /* --- FOOTER --- */
+        /* Footer & Modal */
         .footer {
             text-align: center;
             padding-top: 40px;
@@ -563,6 +569,11 @@
             cursor: pointer;
         }
 
+        /* --- CLASE DE ENLACE DE PROYECTOS (OCULTA POR DEFECTO) --- */
+        .print-projects-msg {
+            display: none;
+        }
+
         @media (max-width: 768px) {
             .navbar .container {
                 flex-direction: column;
@@ -572,118 +583,191 @@
             .hero-name {
                 font-size: 2rem;
             }
-
-            .t-header {
-                flex-direction: column;
-                gap: 4px;
-            }
-
-            .t-date {
-                align-self: flex-start;
-            }
         }
 
+        /* --- ESTILOS DE IMPRESIÓN (SOLUCIÓN DEFINITIVA) --- */
         @media print {
+            @page {
+                size: A4;
+                margin: 0.3cm;
+                /* Margen mínimo */
+            }
 
+            /* Ocultar elementos web no deseados */
             .navbar,
-            .p-links,
+            .footer,
             .print-btn,
             .lang-btn,
+            .section-icon,
             .cert-link,
             .project-gallery,
-            .footer,
-            .close-modal {
+            .p-links,
+            .modal,
+            .btn-github,
+            .contact-pill i,
+            .skill-cat-title i,
+            .projects-grid {
                 display: none !important;
             }
 
+            /* Mostrar mensaje de proyectos como Footer */
+            .print-projects-msg {
+                display: block !important;
+                border: none;
+                border-top: 1px solid #ccc;
+                /* Línea divisoria estilo footer */
+                padding: 10px 0 0 0;
+                border-radius: 0;
+                text-align: center;
+                margin-top: 15px;
+                background-color: transparent;
+                page-break-inside: avoid;
+            }
+
+            .print-projects-msg p {
+                margin: 0;
+                font-weight: 500;
+                font-size: 9pt;
+                color: #444;
+            }
+
+            .print-projects-msg a {
+                color: var(--primary);
+                font-size: 9pt;
+                text-decoration: none;
+                font-weight: 700;
+            }
+
+            /* Estilos Globales Print */
             body {
                 background: white;
                 color: #000;
-                padding: 0;
-                font-size: 11pt;
+                font-size: 8.5pt;
+                /* Fuente compacta */
+                line-height: 1.25;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
 
             .container {
-                width: 100%;
                 max-width: 100%;
-                padding: 0 40px;
+                width: 100%;
+                padding: 0;
                 margin: 0;
             }
 
+            /* --- HEADER COMPACTO CON FOTO --- */
             .hero {
-                padding: 20px 0;
-                text-align: left;
-                border-bottom: 2px solid #000;
-                margin-bottom: 20px;
+                grid-column: 1 / -1;
+                padding: 0 0 5px 0;
+                margin-bottom: 5px;
+                border-bottom: 1px solid #000;
                 display: flex;
+                flex-direction: row;
                 align-items: center;
-                gap: 20px;
+                gap: 15px;
             }
 
             .profile-img-wrapper {
-                width: 100px;
-                height: 100px;
+                display: block !important;
+                width: 50px;
+                height: 50px;
                 margin: 0;
                 border: none;
                 box-shadow: none;
+                padding: 0;
+                border-radius: 50%;
+                overflow: hidden;
+                flex-shrink: 0;
+            }
+
+            .profile-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .header-content {
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
 
             .hero-name {
-                font-size: 24pt;
+                font-size: 16pt;
                 margin: 0;
-                background: none;
-                -webkit-text-fill-color: black;
-                color: black;
+                line-height: 1;
+                color: #000;
+                -webkit-text-fill-color: #000;
             }
 
             .hero-role {
-                font-size: 14pt;
-                margin: 5px 0 10px;
-                color: #333;
+                font-size: 9pt;
+                color: #444;
+                margin: 1px 0 2px 0;
+                font-weight: 600;
             }
 
             .contact-bar {
-                justify-content: flex-start;
-                gap: 15px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
                 margin: 0;
+                font-size: 8pt;
             }
 
             .contact-pill {
                 padding: 0;
                 border: none;
-                box-shadow: none;
                 background: none;
-                font-size: 10pt;
+                box-shadow: none;
+                color: #000;
+                display: inline-block;
             }
 
-            .section {
-                margin-bottom: 25px;
-                page-break-inside: avoid;
+            .contact-pill:not(:last-child)::after {
+                content: " |";
+                margin-left: 4px;
+                color: #999;
             }
 
-            .section-header {
-                border-bottom: 1px solid #333;
-                margin-bottom: 15px;
-                padding-bottom: 5px;
+            /* --- LAYOUT GRID --- */
+            .resume-wrapper {
+                display: grid;
+                grid-template-columns: 28% 70%;
+                grid-template-rows: auto auto auto auto;
+                /* Añadir fila para projects footer */
+                column-gap: 15px;
+                row-gap: 6px;
+                /* Espacio vertical reducido */
+                align-items: start;
+            }
+
+            /* Sidebar */
+            #skills {
+                grid-column: 1;
+                grid-row: 2;
+                border-right: 1px solid #eee;
+                padding-right: 10px;
+                margin-bottom: 0;
+            }
+
+            #education {
+                grid-column: 1;
+                grid-row: 3;
+                border-right: 1px solid #eee;
+                padding-right: 10px;
+                margin-top: 0;
             }
 
             .section-title {
-                font-size: 14pt;
+                font-size: 9.5pt;
                 text-transform: uppercase;
-            }
-
-            .section-icon {
-                display: none;
-            }
-
-            .card,
-            .timeline-content,
-            .project-card,
-            .skill-category {
-                box-shadow: none;
-                border: none;
-                padding: 0;
-                background: none;
+                border-bottom: 1px solid #000;
+                margin-bottom: 4px;
+                padding-bottom: 1px;
+                font-weight: 800;
             }
 
             .skills-wrapper {
@@ -691,130 +775,159 @@
             }
 
             .skill-category {
-                margin-bottom: 10px;
                 padding: 0;
                 border: none;
+                box-shadow: none;
+                margin-bottom: 4px;
             }
 
             .skill-cat-title {
-                font-weight: bold;
-                font-size: 11pt;
-                margin-bottom: 5px;
-                display: inline-block;
-                width: 120px;
+                font-size: 8.5pt;
+                margin-bottom: 1px;
+                color: var(--primary-dark);
+                font-weight: 700;
             }
 
             .skill-tags {
-                display: inline;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2px;
             }
 
             .tag {
                 background: none;
-                border: none;
-                padding: 0;
-                margin-right: 8px;
-                color: #000;
-                font-weight: normal;
+                border: 1px solid #ddd;
+                padding: 0px 2px;
+                font-size: 7.5pt;
+                color: #333;
+                border-radius: 3px;
             }
 
-            .tag::after {
-                content: ",";
-            }
-
-            .tag:last-child::after {
-                content: "";
-            }
-
-            .timeline {
+            /* Educación Compacta */
+            #education .timeline-item {
+                margin-bottom: 6px;
                 padding: 0;
             }
 
-            .timeline::before,
-            .timeline-dot {
+            #education .t-role {
+                font-size: 8.5pt;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+
+            #education .t-company {
+                font-size: 8pt;
+                font-style: italic;
+            }
+
+            #education .t-date {
+                font-size: 7.5pt;
+                color: #666;
+            }
+
+            #education .t-desc,
+            #education .timeline::before,
+            #education .timeline-dot {
                 display: none;
             }
 
-            .timeline-item {
-                margin-bottom: 15px;
+
+            /* Main Content */
+            #about {
+                grid-column: 2;
+                grid-row: 2;
+                margin-bottom: 6px;
+            }
+
+            #about .section-header {
+                display: none;
+            }
+
+            .card {
                 padding: 0;
-            }
-
-            .t-header {
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 2px;
-            }
-
-            .t-role {
-                font-size: 12pt;
-            }
-
-            .t-company {
-                font-size: 11pt;
-                font-style: italic;
-                color: #333;
-            }
-
-            .t-date {
-                background: none;
                 border: none;
-                color: #000;
+                box-shadow: none;
+            }
+
+            .about-text {
+                font-size: 8.5pt;
+                line-height: 1.25;
+                text-align: justify;
+            }
+
+            /* Experiencia Laboral */
+            #experience {
+                grid-column: 2;
+                grid-row: 3;
+                margin-bottom: 6px;
+            }
+
+            #experience .section-header {
+                margin-bottom: 4px;
+            }
+
+            #experience .timeline {
+                padding-left: 8px;
+            }
+
+            #experience .timeline::before {
+                left: 0;
+                background: #ddd;
+            }
+
+            #experience .timeline-dot {
+                left: -4px;
+                width: 8px;
+                height: 8px;
+                border-width: 2px;
+            }
+
+            #experience .timeline-item {
+                margin-bottom: 4px;
+                padding-left: 12px;
+            }
+
+            #experience .timeline-content {
                 padding: 0;
-                font-size: 10pt;
-            }
-
-            .t-desc {
-                margin-top: 5px;
-                font-size: 10pt;
-            }
-
-            .projects-grid {
-                display: block;
-            }
-
-            .project-card {
-                display: block;
-                margin-bottom: 15px;
-                page-break-inside: avoid;
-                border-bottom: 1px dotted #ccc;
-                padding-bottom: 10px;
-            }
-
-            .project-card:last-child {
                 border: none;
+                box-shadow: none;
             }
 
-            .p-header {
-                justify-content: flex-start;
-                gap: 10px;
-                margin-bottom: 2px;
+            #experience .t-role {
+                font-size: 9.5pt;
+                font-weight: 700;
             }
 
-            .p-title {
-                font-size: 12pt;
-            }
-
-            .p-badge {
-                background: none;
-                border: 1px solid #000;
-                color: #000;
-                padding: 1px 4px;
+            #experience .t-date {
                 font-size: 8pt;
-            }
-
-            .p-desc {
-                color: #000;
-                margin-bottom: 5px;
-                font-size: 10pt;
-            }
-
-            .p-tech span {
-                background: none;
-                color: #333;
                 padding: 0;
-                margin-right: 5px;
-                font-style: italic;
-                font-size: 9pt;
+                border: none;
+                background: none;
+            }
+
+            #experience .t-desc {
+                margin-top: 0px;
+                font-size: 8.5pt;
+            }
+
+            #experience .t-desc li {
+                margin-bottom: 0px;
+            }
+
+            /* --- PROYECTOS COMO FOOTER (Ancho Completo) --- */
+            #projects {
+                grid-column: 1 / -1;
+                /* Ocupar todo el ancho (Izquierda + Derecha) */
+                grid-row: 4;
+                /* Fila final */
+                margin-top: 10px;
+                margin-bottom: 0;
+                page-break-inside: avoid;
+            }
+
+            /* Ocultar el título de la sección projects en impresión para que solo se vea el mensaje */
+            #projects .section-header {
+                display: none;
             }
         }
     </style>
@@ -838,412 +951,368 @@
         </div>
     </nav>
 
-    <header class="container hero">
-        <div class="profile-img-wrapper">
-            <img src="./img/avatar/Jonsito.jpg" alt="Juan Santos Pimentel" class="profile-img">
-        </div>
-        <div style="flex-grow: 1;">
-            <h1 class="hero-name">Juan Santos Pimentel Lalangui</h1>
-            <p class="hero-role" data-i18n="role_title">Software Developer & Cybersecurity Enthusiast</p>
+    <!-- WRAPPER PRINCIPAL PARA GRID DE IMPRESIÓN -->
+    <div class="container resume-wrapper">
 
-            <div class="contact-bar">
-                <a href="mailto:gercermagden@gmail.com" class="contact-pill">
-                    <i class="fa-solid fa-envelope"></i> gercermagden@gmail.com
-                </a>
-                <div class="contact-pill">
-                    <i class="fa-solid fa-location-dot"></i> Lima, Peru
-                </div>
-                <a href="https://github.com/LavenderEdit" target="_blank" class="contact-pill">
-                    <i class="fa-brands fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/juan-santos-pimentel-lalangui-873a0a2a9" target="_blank" class="contact-pill">
-                    <i class="fa-brands fa-linkedin"></i> LinkedIn
-                </a>
+        <!-- HEADER MODIFICADO: Estructura interna para Print -->
+        <header class="hero">
+            <div class="profile-img-wrapper">
+                <img src="./img/avatar/Jonsito.jpg" alt="Juan Santos Pimentel" class="profile-img">
             </div>
-        </div>
-    </header>
+            <div class="header-content">
+                <h1 class="hero-name">Juan Santos Pimentel Lalangui</h1>
+                <p class="hero-role" data-i18n="role_title">Software Developer & Cybersecurity Enthusiast</p>
 
-    <section id="about" class="container section">
-        <div class="section-header">
-            <i class="fa-regular fa-user section-icon"></i>
-            <h2 class="section-title" data-i18n="about_me_title">About Me</h2>
-        </div>
-        <div class="card">
-            <p class="about-text" data-i18n="about_me_text">
-                Passionate Software Developer with a solid foundation in backend architecture and cybersecurity.
-                I graduated with a technical degree in Software Development and have honed my skills through intensive
-                internships,
-                specializing in microservices migration (Spring Boot), secure data handling, and process automation.
-
-                <br><br>
-                Recently, I expanded my expertise with certifications in Cloud Computing (AWS/Azure/GCP) and Ethical
-                Hacking.
-                I am proficient in English (Advanced Certification) and eager to leverage my technical versatility to
-                build secure, scalable solutions.
-            </p>
-        </div>
-    </section>
-
-    <section id="skills" class="container section">
-        <div class="section-header">
-            <i class="fa-solid fa-bolt section-icon"></i>
-            <h2 class="section-title" data-i18n="skills_title">Technical Skills</h2>
-        </div>
-        <div class="skills-wrapper">
-            <div class="skill-category">
-                <div class="skill-cat-title"><i class="fa-solid fa-server"></i> Backend</div>
-                <div class="skill-tags">
-                    <span class="tag">Java (Spring Boot)</span>
-                    <span class="tag">PHP (Laravel/Native)</span>
-                    <span class="tag">NestJS</span>
-                    <span class="tag">Node.js</span>
-                    <span class="tag">REST & SOAP APIs</span>
+                <!-- Contacto Compacto Horizontal -->
+                <div class="contact-bar">
+                    <div class="contact-pill">
+                        <i class="fa-solid fa-phone"></i> +51 993 718 514
+                    </div>
+                    <a href="mailto:gercermagden@gmail.com" class="contact-pill">
+                        <i class="fa-solid fa-envelope"></i> gercermagden@gmail.com
+                    </a>
+                    <div class="contact-pill">
+                        <i class="fa-solid fa-location-dot"></i> Lima, Peru
+                    </div>
+                    <a href="https://github.com/LavenderEdit" target="_blank" class="contact-pill">
+                        <i class="fa-brands fa-github"></i> github.com/LavenderEdit
+                    </a>
+                    <a href="https://www.linkedin.com/in/juan-santos-pimentel-lalangui-873a0a2a9" target="_blank"
+                        class="contact-pill">
+                        <i class="fa-brands fa-linkedin"></i> linkedin.com/in/juan-santos
+                    </a>
                 </div>
             </div>
-            <div class="skill-category">
-                <div class="skill-cat-title"><i class="fa-solid fa-laptop-code"></i> Frontend</div>
-                <div class="skill-tags">
-                    <span class="tag">JavaScript (ES6+)</span>
-                    <span class="tag">TypeScript</span>
-                    <span class="tag">React</span>
-                    <span class="tag">Angular</span>
-                    <span class="tag">HTML5 / CSS3</span>
-                    <span class="tag">Tailwind / Bootstrap</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <div class="skill-cat-title"><i class="fa-solid fa-cloud"></i> Cloud & Data</div>
-                <div class="skill-tags">
-                    <span class="tag">MySQL</span>
-                    <span class="tag">SQL Server</span>
-                    <span class="tag">AWS / Azure / GCP</span>
-                    <span class="tag">Docker</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <div class="skill-cat-title"><i class="fa-solid fa-shield-halved"></i> Security & Tools</div>
-                <div class="skill-tags">
-                    <span class="tag">Ethical Hacking</span>
-                    <span class="tag">Git / GitHub</span>
-                    <span class="tag">JIRA / Scrum</span>
-                    <span class="tag">Linux</span>
-                </div>
-            </div>
-        </div>
-    </section>
+        </header>
 
-    <section id="experience" class="container section">
-        <div class="section-header">
-            <i class="fa-solid fa-briefcase section-icon"></i>
-            <h2 class="section-title" data-i18n="exp_title">Work Experience</h2>
-        </div>
-        <div class="timeline">
+        <section id="about" class="section">
+            <div class="section-header">
+                <i class="fa-regular fa-user section-icon"></i>
+                <h2 class="section-title" data-i18n="about_me_title">About Me</h2>
+            </div>
+            <div class="card">
+                <p class="about-text" data-i18n="about_me_text">
+                    Passionate Software Developer with a solid foundation in backend architecture and cybersecurity.
+                    I graduated with a technical degree in Software Development and have honed my skills through
+                    intensive
+                    internships,
+                    specializing in microservices migration (Spring Boot), secure data handling, and process automation.
 
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="t-header">
-                        <div>
-                            <div class="t-role" data-i18n="job1_title">Backend Developer</div>
-                            <div class="t-company">Lubricantes Claudia</div>
+                    <br><br>
+                    Recently, I expanded my expertise with certifications in Cloud Computing (AWS/Azure/GCP) and Ethical
+                    Hacking.
+                    I am proficient in English (Advanced Certification) and eager to leverage my technical versatility
+                    to
+                    build secure, scalable solutions.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="section-header">
+                <i class="fa-solid fa-bolt section-icon"></i>
+                <h2 class="section-title" data-i18n="skills_title">Technical Skills</h2>
+            </div>
+            <div class="skills-wrapper">
+                <div class="skill-category">
+                    <div class="skill-cat-title"><i class="fa-solid fa-server"></i> Backend</div>
+                    <div class="skill-tags">
+                        <span class="tag">Java (Spring Boot)</span>
+                        <span class="tag">PHP (Laravel)</span>
+                        <span class="tag">NestJS</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">REST & SOAP</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-cat-title"><i class="fa-solid fa-laptop-code"></i> Frontend</div>
+                    <div class="skill-tags">
+                        <span class="tag">JavaScript (ES6+)</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Angular</span>
+                        <span class="tag">HTML5 / CSS3</span>
+                        <span class="tag">Tailwind</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-cat-title"><i class="fa-solid fa-cloud"></i> Cloud & Data</div>
+                    <div class="skill-tags">
+                        <span class="tag">MySQL</span>
+                        <span class="tag">SQL Server</span>
+                        <span class="tag">AWS / Azure / GCP</span>
+                        <span class="tag">Docker</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-cat-title"><i class="fa-solid fa-shield-halved"></i> Security</div>
+                    <div class="skill-tags">
+                        <span class="tag">Ethical Hacking</span>
+                        <span class="tag">Git / GitHub</span>
+                        <span class="tag">Linux</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="section-header">
+                <i class="fa-solid fa-briefcase section-icon"></i>
+                <h2 class="section-title" data-i18n="exp_title">Work Experience</h2>
+            </div>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="t-header">
+                            <div>
+                                <div class="t-role" data-i18n="job1_title">Backend Developer</div>
+                                <div class="t-company">Lubricantes Claudia</div>
+                            </div>
+                            <div class="t-date" data-i18n="job1_date">Aug 2025 - Dec 2025</div>
                         </div>
-                        <div class="t-date" data-i18n="job1_date">Aug 2025 - Dec 2025</div>
+                        <ul class="t-desc">
+                            <li data-i18n="job1_desc_1">Migration of legacy billing system to Microservices (Spring
+                                Boot).
+                            </li>
+                            <li data-i18n="job1_desc_2">Implementation of secure XML queue services for high-volume
+                                data.
+                            </li>
+                            <li data-i18n="job1_desc_3">Optimization of SQL queries improving database response time.
+                            </li>
+                        </ul>
+                        <a href="./assets/pdf/CT - Lubricantes Claudia - Juan Pimentel - 6to Ciclo.pdf" target="_blank"
+                            class="cert-link">
+                            <i class="fa-solid fa-file-pdf"></i> <span data-i18n="view_cert">View Certificate</span>
+                        </a>
                     </div>
-                    <ul class="t-desc">
-                        <li data-i18n="job1_desc_1">Migration of legacy billing system to Microservices (Spring Boot).
-                        </li>
-                        <li data-i18n="job1_desc_2">Implementation of secure XML queue services for high-volume data.
-                        </li>
-                        <li data-i18n="job1_desc_3">Optimization of SQL queries improving database response time.</li>
-                    </ul>
-                    <a href="./assets/pdf/CT - Lubricantes Claudia - Juan Pimentel - 6to Ciclo.pdf" target="_blank"
-                        class="cert-link">
-                        <i class="fa-solid fa-file-pdf"></i> <span data-i18n="view_cert">View Certificate</span>
-                    </a>
                 </div>
-            </div>
 
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="t-header">
-                        <div>
-                            <div class="t-role" data-i18n="job2_title">Software Developer</div>
-                            <div class="t-company">Digital Buho S.A.C (Remote)</div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="t-header">
+                            <div>
+                                <div class="t-role" data-i18n="job2_title">Software Developer</div>
+                                <div class="t-company">Digital Buho S.A.C (Remote)</div>
+                            </div>
+                            <div class="t-date" data-i18n="job2_date">Feb 2025 - Jun 2025</div>
                         </div>
-                        <div class="t-date" data-i18n="job2_date">Feb 2025 - Jun 2025</div>
+                        <ul class="t-desc">
+                            <li data-i18n="job2_desc_1">Developed custom web scrapers and automation tools.</li>
+                            <li data-i18n="job2_desc_2">Managed complex JSON data structures and consumed external APIs.
+                            </li>
+                            <li data-i18n="job2_desc_3">Collaborated in a 100% remote agile environment.</li>
+                        </ul>
+                        <a href="./assets/pdf/CT - Buho SAC - Juan Pimentel - 5to Ciclo.pdf" target="_blank"
+                            class="cert-link">
+                            <i class="fa-solid fa-file-pdf"></i> <span data-i18n="view_cert">View Certificate</span>
+                        </a>
                     </div>
-                    <ul class="t-desc">
-                        <li data-i18n="job2_desc_1">Developed custom web scrapers and automation tools.</li>
-                        <li data-i18n="job2_desc_2">Managed complex JSON data structures and consumed external APIs.
-                        </li>
-                        <li data-i18n="job2_desc_3">Collaborated in a 100% remote agile environment.</li>
-                    </ul>
-                    <a href="./assets/pdf/CT - Buho SAC - Juan Pimentel - 5to Ciclo.pdf" target="_blank"
-                        class="cert-link">
-                        <i class="fa-solid fa-file-pdf"></i> <span data-i18n="view_cert">View Certificate</span>
-                    </a>
                 </div>
-            </div>
 
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="t-header">
-                        <div>
-                            <div class="t-role" data-i18n="job3_title">Full Stack Developer</div>
-                            <div class="t-company">Lubricantes Claudia</div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="t-header">
+                            <div>
+                                <div class="t-role" data-i18n="job3_title">Full Stack Developer</div>
+                                <div class="t-company">Lubricantes Claudia</div>
+                            </div>
+                            <div class="t-date" data-i18n="job3_date">Aug 2024 - Dec 2024</div>
                         </div>
-                        <div class="t-date" data-i18n="job3_date">Aug 2024 - Dec 2024</div>
-                    </div>
-                    <ul class="t-desc">
-                        <li data-i18n="job3_desc_1">Developed a web-based electronic invoicing system (SUNAT compliant).
-                        </li>
-                        <li data-i18n="job3_desc_2">Built inventory management and sales tracking modules.</li>
-                        <li data-i18n="job3_desc_3">Stack: Java, JSP, Hibernate/JPA, MySQL.</li>
-                    </ul>
-                    <a href="./assets/pdf/CT - Lubricantes Claudia - Juan Pimentel - 4to Ciclo.pdf" target="_blank"
-                        class="cert-link">
-                        <i class="fa-solid fa-file-pdf"></i> <span data-i18n="view_cert">View Certificate</span>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="projects" class="container section">
-        <div class="section-header">
-            <i class="fa-solid fa-code-branch section-icon"></i>
-            <h2 class="section-title" data-i18n="projects_title">Featured Projects</h2>
-        </div>
-        <div class="projects-grid">
-
-            <div class="project-card">
-                <div class="project-gallery" onclick="openModal(this)">
-                    <img src="./img/projects/Portfolio Hub - Home.png" alt="Portfolio Hub" class="project-img">
-                </div>
-                <div class="project-content">
-                    <div class="p-header">
-                        <div class="p-title">Portfolio Hub</div>
-                        <span class="p-badge">Spring Boot</span>
-                    </div>
-                    <p class="p-desc" data-i18n="proj_hub_desc">
-                        A dynamic portfolio backend system. Built with Spring Boot to manage project data,
-                        authentication, and content serving.
-                    </p>
-                    <div class="p-tech">
-                        <span>Java 17</span><span>Spring Boot</span><span>MySQL</span><span>Docker</span>
-                    </div>
-                    <div class="p-links">
-                        <a href="https://github.com/LionelPastranaMK500/Portfolio-Hub.git" target="_blank"
-                            class="btn-github">
-                            <i class="fa-brands fa-github"></i> GitHub Code
+                        <ul class="t-desc">
+                            <li data-i18n="job3_desc_1">Developed a web-based electronic invoicing system (SUNAT
+                                compliant).
+                            </li>
+                            <li data-i18n="job3_desc_2">Built inventory management and sales tracking modules.</li>
+                            <li data-i18n="job3_desc_3">Stack: Java, JSP, Hibernate/JPA, MySQL.</li>
+                        </ul>
+                        <a href="./assets/pdf/CT - Lubricantes Claudia - Juan Pimentel - 4to Ciclo.pdf" target="_blank"
+                            class="cert-link">
+                            <i class="fa-solid fa-file-pdf"></i> <span data-i18n="view_cert">View Certificate</span>
                         </a>
                     </div>
                 </div>
-            </div>
 
-            <div class="project-card">
-                <div class="project-gallery" onclick="openModal(this)">
-                    <img src="./img/projects/Bandwitch DRM Patreon.png" alt="Patreon DRM" class="project-img">
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <div class="section-header">
+                <i class="fa-solid fa-graduation-cap section-icon"></i>
+                <h2 class="section-title" data-i18n="edu_title">Education</h2>
+            </div>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="t-header">
+                            <div class="t-role" data-i18n="edu_tech_title">Software Development</div>
+                            <div class="t-date">2023 - 2025</div>
+                        </div>
+                        <div class="t-company" data-i18n="edu_tech_school">Senati / Peru</div>
+                    </div>
                 </div>
-                <div class="project-content">
-                    <div class="p-header">
-                        <div class="p-title" data-i18n="proj_drm_title">Patreon DRM Security</div>
-                        <span class="p-badge" data-i18n="type_security">Security</span>
-                    </div>
-                    <p class="p-desc" data-i18n="proj_drm_desc">
-                        A robust backend security system designed to protect digital content for Patreon creators.
-                        Implements advanced authentication, content encryption, and bandwidth monitoring.
-                    </p>
-                    <div class="p-tech">
-                        <span>NestJS</span><span>TypeScript</span><span>JWT</span><span>Encryption</span>
-                    </div>
-                    <div class="p-links">
-                        <a href="https://github.com/LavenderEdit/drm-patreon-backend" target="_blank"
-                            class="btn-github">
-                            <i class="fa-brands fa-github"></i> GitHub Code
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="t-header">
+                            <div class="t-role" data-i18n="edu_cloud_title">Cloud Computing (AWS/Azure)</div>
+                            <div class="t-date">2025</div>
+                        </div>
+                        <div class="t-company">Universidad Nacional de Ingeniería</div>
+                        <a href="./assets/pdf/Certificados UNI - Cloud Computing.pdf" target="_blank" class="cert-link">
+                            <i class="fa-solid fa-file-pdf"></i> <span data-i18n="view_cert">View Certificate</span>
                         </a>
                     </div>
                 </div>
-            </div>
 
-            <div class="project-card">
-                <div class="project-gallery" onclick="openModal(this)">
-                    <img src="./img/projects/Kardex App - Home.png" alt="KardexPro" class="project-img">
-                </div>
-                <div class="project-content">
-                    <div class="p-header">
-                        <div class="p-title">KardexPro (Full Stack)</div>
-                        <span class="p-badge">Full Stack</span>
-                    </div>
-                    <p class="p-desc" data-i18n="proj_kardex_desc">
-                        Modern inventory and product management application. Features a decoupled architecture with a
-                        dynamic Vanilla JS frontend (ES6 Modules) and a robust Java Spring Boot API backend.
-                    </p>
-                    <div class="p-tech">
-                        <span>Java Spring Boot</span><span>JavaScript ES6</span><span>MySQL</span><span>REST API</span>
-                    </div>
-                    <div class="p-links">
-                        <a href="https://github.com/LavenderEdit/product-management-api" target="_blank"
-                            class="btn-github">
-                            <i class="fa-brands fa-github"></i> Backend
-                        </a>
-                        <a href="https://github.com/LavenderEdit/product-management-app" target="_blank"
-                            class="btn-github">
-                            <i class="fa-brands fa-github"></i> Frontend
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="t-header">
+                            <div class="t-role" data-i18n="edu_hack_title">Cybersecurity & Ethical Hacking</div>
+                            <div class="t-date">2025</div>
+                        </div>
+                        <div class="t-company">Hacker Mentor Academy</div>
+                        <a href="./assets/pdf/b43ac3eb-1631-45d6-aacb-f5fcbc0e41c9.pdf" target="_blank"
+                            class="cert-link">
+                            <i class="fa-solid fa-file-pdf"></i> <span data-i18n="view_cert">View Certificate</span>
                         </a>
                     </div>
                 </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="t-header">
+                            <div class="t-role" data-i18n="edu_eng_title">English (Advanced)</div>
+                            <div class="t-date">2021</div>
+                        </div>
+                        <div class="t-company">ICPNA</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="section-header">
+                <i class="fa-solid fa-code-branch section-icon"></i>
+                <h2 class="section-title" data-i18n="projects_title">Featured Projects</h2>
             </div>
 
-            <div class="project-card">
-                <div class="project-gallery" onclick="openModal(this)">
-                    <img src="./img/projects/Gestor Venta - Dashboard.png" alt="Gestor Venta" class="project-img">
+            <!-- GRILLA WEB (Se oculta en PDF) -->
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-gallery" onclick="openModal(this)">
+                        <img src="./img/projects/Portfolio Hub - Home.png" alt="Portfolio Hub" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <div class="p-header">
+                            <div class="p-title">Portfolio Hub</div>
+                            <span class="p-badge">Spring Boot</span>
+                        </div>
+                        <p class="p-desc" data-i18n="proj_hub_desc">
+                            Dynamic portfolio backend system. Built with Spring Boot to manage project data and auth.
+                        </p>
+                        <div class="p-tech">
+                            <span>Java 17</span><span>Spring Boot</span><span>MySQL</span><span>Docker</span>
+                        </div>
+                        <div class="p-links">
+                            <a href="https://github.com/LionelPastranaMK500/Portfolio-Hub.git" target="_blank"
+                                class="btn-github">
+                                <i class="fa-brands fa-github"></i> GitHub Code
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="project-content">
-                    <div class="p-header">
-                        <div class="p-title">Gestor Venta (Simple)</div>
-                        <span class="p-badge">Monolith</span>
+
+                <div class="project-card">
+                    <div class="project-gallery" onclick="openModal(this)">
+                        <img src="./img/projects/Bandwitch DRM Patreon.png" alt="Patreon DRM" class="project-img">
                     </div>
-                    <p class="p-desc" data-i18n="proj_gestor_desc">
-                        Comprehensive ERP solution for small business management.
-                        Built on a monolithic architecture covering Inventory, Sales, and Supplier management.
-                    </p>
-                    <div class="p-tech">
-                        <span>PHP 8</span><span>MVC Pattern</span><span>MySQL</span><span>Bootstrap</span>
-                    </div>
-                    <div class="p-links">
-                        <a href="https://github.com/LavenderEdit/gestorsimple" target="_blank" class="btn-github">
-                            <i class="fa-brands fa-github"></i> GitHub Code
-                        </a>
+                    <div class="project-content">
+                        <div class="p-header">
+                            <div class="p-title" data-i18n="proj_drm_title">Patreon DRM Security</div>
+                            <span class="p-badge" data-i18n="type_security">Security</span>
+                        </div>
+                        <p class="p-desc" data-i18n="proj_drm_desc">
+                            Robust backend security system to protect digital content. Implements encryption and
+                            monitoring.
+                        </p>
+                        <div class="p-tech">
+                            <span>NestJS</span><span>TypeScript</span><span>JWT</span><span>Encryption</span>
+                        </div>
+                        <div class="p-links">
+                            <a href="https://github.com/LavenderEdit/drm-patreon-backend" target="_blank"
+                                class="btn-github">
+                                <i class="fa-brands fa-github"></i> GitHub Code
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <div class="project-card">
+                    <div class="project-gallery" onclick="openModal(this)">
+                        <img src="./img/projects/Kardex App - Home.png" alt="KardexPro" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <div class="p-header">
+                            <div class="p-title">KardexPro</div>
+                            <span class="p-badge">Full Stack</span>
+                        </div>
+                        <p class="p-desc" data-i18n="proj_kardex_desc">
+                            Modern inventory management. Decoupled architecture with Vanilla JS and Spring Boot API.
+                        </p>
+                        <div class="p-tech">
+                            <span>Spring Boot</span><span>JS ES6</span><span>MySQL</span>
+                        </div>
+                        <div class="p-links">
+                            <a href="https://github.com/LavenderEdit/product-management-api" target="_blank"
+                                class="btn-github">
+                                <i class="fa-brands fa-github"></i> Backend
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-gallery" onclick="openModal(this)">
+                        <img src="./img/projects/Gestor Venta - Dashboard.png" alt="Gestor Venta" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <div class="p-header">
+                            <div class="p-title">Gestor Venta</div>
+                            <span class="p-badge">Monolith</span>
+                        </div>
+                        <p class="p-desc" data-i18n="proj_gestor_desc">
+                            Comprehensive ERP solution for small business management. Inventory, Sales, and Suppliers.
+                        </p>
+                        <div class="p-tech">
+                            <span>PHP 8</span><span>MVC</span><span>MySQL</span><span>Bootstrap</span>
+                        </div>
+                        <div class="p-links">
+                            <a href="https://github.com/LavenderEdit/gestorsimple" target="_blank" class="btn-github">
+                                <i class="fa-brands fa-github"></i> GitHub Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="project-card">
-                <div class="project-gallery" onclick="openModal(this)">
-                    <img src="./img/projects/SOAP API - POST.png" alt="SOAP API" class="project-img">
-                </div>
-                <div class="project-content">
-                    <div class="p-header">
-                        <div class="p-title" data-i18n="proj_soap_title">SOAP Client Manager</div>
-                        <span class="p-badge">Backend</span>
-                    </div>
-                    <p class="p-desc" data-i18n="proj_soap_desc">
-                        Java-based application implementing the SOAP protocol for secure exchange of client information.
-                        Handles XML parsing and strict data validation.
-                    </p>
-                    <div class="p-tech">
-                        <span>Java</span><span>SOAP</span><span>XML</span><span>Maven</span>
-                    </div>
-                    <div class="p-links">
-                        <a href="https://github.com/LavenderEdit/soap-clientes" target="_blank" class="btn-github">
-                            <i class="fa-brands fa-github"></i> GitHub Code
-                        </a>
-                    </div>
-                </div>
+            <!-- MENSAJE EXCLUSIVO PARA IMPRESIÓN / PDF -->
+            <div class="print-projects-msg">
+                <p data-i18n="print_proj_msg">Puedes ver algunos de mis proyectos destacados en mi GitHub o mi
+                    portafolio online:</p>
+                <a href="https://lavenderedit.github.io/personal-portfolio/"
+                    target="_blank">https://lavenderedit.github.io/personal-portfolio/</a>
             </div>
 
-            <div class="project-card">
-                <div class="project-gallery" onclick="openModal(this)">
-                    <img src="./img/projects/PokeGuessr - Home.png" alt="PokeGuessr" class="project-img">
-                </div>
-                <div class="project-content">
-                    <div class="p-header">
-                        <div class="p-title">PokeGuessr</div>
-                        <span class="p-badge">Game</span>
-                    </div>
-                    <p class="p-desc" data-i18n="proj_poke_desc">
-                        Interactive web game interacting with external APIs. Users guess the character based on
-                        silhouettes.
-                        Optimized for performance and mobile responsiveness.
-                    </p>
-                    <div class="p-tech">
-                        <span>JavaScript</span><span>HTML5</span><span>PokeAPI</span>
-                    </div>
-                    <div class="p-links">
-                        <a href="https://github.com/LavenderEdit/pokeguessr" target="_blank" class="btn-github">
-                            <i class="fa-brands fa-github"></i> GitHub Code
-                        </a>
-                    </div>
-                </div>
-            </div>
+        </section>
 
-        </div>
-    </section>
-
-    <section id="education" class="container section">
-        <div class="section-header">
-            <i class="fa-solid fa-graduation-cap section-icon"></i>
-            <h2 class="section-title" data-i18n="edu_title">Education & Certifications</h2>
-        </div>
-        <div class="timeline">
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="t-header">
-                        <div class="t-role" data-i18n="edu_cloud_title">Cloud Computing (AWS - Azure - GCP)</div>
-                        <div class="t-date">Oct 2025 - Nov 2025</div>
-                    </div>
-                    <div class="t-company">Universidad Nacional de Ingeniería (UNI - INICTEL)</div>
-                    <p class="t-desc" data-i18n="edu_cloud_desc">
-                        Training in cloud infrastructure, storage services, identity management, and cost
-                        administration.
-                    </p>
-                    <a href="./assets/pdf/Certificados UNI - Cloud Computing.pdf" target="_blank" class="cert-link">
-                        <i class="fa-solid fa-file-pdf"></i> <span data-i18n="view_cert">View Certificate</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="t-header">
-                        <div class="t-role" data-i18n="edu_hack_title">Cybersecurity & Ethical Hacking</div>
-                        <div class="t-date">Oct 2025</div>
-                    </div>
-                    <div class="t-company">Hacker Mentor Academy</div>
-                    <p class="t-desc" data-i18n="edu_hack_desc">
-                        Vulnerability assessment, penetration testing, and network security protocols.
-                    </p>
-                    <a href="./assets/pdf/b43ac3eb-1631-45d6-aacb-f5fcbc0e41c9.pdf" target="_blank" class="cert-link">
-                        <i class="fa-solid fa-file-pdf"></i> <span data-i18n="view_cert">View Certificate</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="t-header">
-                        <div class="t-role" data-i18n="edu_tech_title">Technical Degree in Software Development</div>
-                        <div class="t-date">2023 - 2025</div>
-                    </div>
-                    <div class="t-company" data-i18n="edu_tech_school">Senati / Peru</div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="t-header">
-                        <div class="t-role" data-i18n="edu_eng_title">English Program (Advanced)</div>
-                        <div class="t-date">2021</div>
-                    </div>
-                    <div class="t-company">ICPNA (Instituto Cultural Peruano Norteamericano)</div>
-                    <a href="./assets/img/73945071_2021_04_12_Certificado advanced.jpg" target="_blank"
-                        class="cert-link">
-                        <i class="fa-solid fa-image"></i> <span data-i18n="view_cert">View Certificate</span>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </section>
+    </div> <!-- FIN WRAPPER -->
 
     <div class="container footer">
         <button onclick="window.print()" class="print-btn">
@@ -1267,7 +1336,7 @@
 
                 role_title: "Software Developer & Cybersecurity Enthusiast",
 
-                about_me_title: "About Me",
+                about_me_title: "Profile",
                 about_me_text: "Passionate Software Developer with a solid foundation in backend architecture and cybersecurity. I graduated with a technical degree in Software Development and have honed my skills through intensive internships, specializing in microservices migration (Spring Boot), secure data handling, and process automation. <br><br> Recently, I expanded my expertise with certifications in Cloud Computing (AWS/Azure/GCP) and Ethical Hacking. I am proficient in English (Advanced Certification) and eager to leverage my technical versatility to build secure, scalable solutions.",
 
                 skills_title: "Technical Skills",
@@ -1294,33 +1363,34 @@
                 job3_desc_3: "Stack: Java, JSP, Hibernate/JPA, MySQL.",
 
                 projects_title: "Featured Projects",
+                print_proj_msg: "You can view some of my featured projects on my GitHub or my online portfolio:",
 
                 type_security: "Security",
                 proj_drm_title: "Patreon DRM Security",
-                proj_drm_desc: "A robust backend security system designed to protect digital content for Patreon creators. Implements advanced authentication, content encryption, and bandwidth monitoring.",
+                proj_drm_desc: "Robust backend security system to protect digital content. Implements encryption and monitoring.",
 
-                proj_kardex_desc: "Modern inventory and product management application. Features a decoupled architecture with a dynamic Vanilla JS frontend (ES6 Modules) and a robust Java Spring Boot API backend.",
+                proj_kardex_desc: "Modern inventory management. Decoupled architecture with Vanilla JS and Spring Boot API.",
 
-                proj_gestor_desc: "Comprehensive ERP solution for small business management. Built on a monolithic architecture covering Inventory, Sales, and Supplier management.",
+                proj_gestor_desc: "Comprehensive ERP solution for small business management. Inventory, Sales, and Suppliers.",
 
                 proj_soap_title: "SOAP Client Manager",
-                proj_soap_desc: "Java-based application implementing the SOAP protocol for secure exchange of client information. Handles XML parsing and strict data validation.",
+                proj_soap_desc: "Java-based application implementing the SOAP protocol for secure exchange of client information.",
 
-                proj_poke_desc: "Interactive web game interacting with external APIs. Users guess the character based on silhouettes. Optimized for performance and mobile responsiveness.",
+                proj_poke_desc: "Interactive web game interacting with external APIs. Users guess the character based on silhouettes.",
 
-                proj_hub_desc: "A dynamic portfolio backend system. Built with Spring Boot to manage project data, authentication, and content serving.",
+                proj_hub_desc: "Dynamic portfolio backend system. Built with Spring Boot to manage project data and auth.",
 
-                edu_title: "Education & Certifications",
-                edu_cloud_title: "Cloud Computing (AWS - Azure - GCP)",
-                edu_cloud_desc: "Training in cloud infrastructure, storage services, identity management, and cost administration.",
+                edu_title: "Education",
+                edu_cloud_title: "Cloud Computing (AWS/Azure)",
+                edu_cloud_desc: "Cloud infrastructure and storage services.",
 
                 edu_hack_title: "Cybersecurity & Ethical Hacking",
-                edu_hack_desc: "Vulnerability assessment, penetration testing, and network security protocols.",
+                edu_hack_desc: "Vulnerability assessment and pentesting.",
 
-                edu_tech_title: "Technical Degree in Software Development",
+                edu_tech_title: "Software Development",
                 edu_tech_school: "Senati / Peru",
 
-                edu_eng_title: "English Program (Advanced)",
+                edu_eng_title: "English (Advanced)",
 
                 btn_print: "Download PDF / Print"
             },
@@ -1333,7 +1403,7 @@
 
                 role_title: "Desarrollador de Software & Entusiasta de Ciberseguridad",
 
-                about_me_title: "Sobre Mí",
+                about_me_title: "Perfil",
                 about_me_text: "Desarrollador de Software apasionado con una base sólida en arquitectura backend y ciberseguridad. Egresado de la carrera técnica de Desarrollo de Software, he perfeccionado mis habilidades a través de pasantías intensivas, especializándome en la migración de microservicios (Spring Boot), manejo seguro de datos y automatización de procesos. <br><br> Recientemente, amplié mi experiencia con certificaciones en Cloud Computing (AWS/Azure/GCP) y Hacking Ético. Cuento con inglés avanzado (Certificación ICPNA) y estoy ansioso por aprovechar mi versatilidad técnica para construir soluciones seguras y escalables.",
 
                 skills_title: "Habilidades Técnicas",
@@ -1360,33 +1430,34 @@
                 job3_desc_3: "Stack: Java, JSP, Hibernate/JPA, MySQL.",
 
                 projects_title: "Proyectos Destacados",
+                print_proj_msg: "Puedes ver algunos de mis proyectos destacados en mi GitHub o mi portafolio online:",
 
                 type_security: "Seguridad",
                 proj_drm_title: "Seguridad DRM Patreon",
-                proj_drm_desc: "Un sistema de seguridad backend robusto para proteger contenido digital de creadores en Patreon. Implementa autenticación avanzada, encriptación y monitoreo de ancho de banda.",
+                proj_drm_desc: "Sistema backend robusto para proteger contenido digital. Implementa encriptación y monitoreo.",
 
-                proj_kardex_desc: "Aplicación moderna de gestión de inventarios y productos. Cuenta con una arquitectura desacoplada con un frontend dinámico en Vanilla JS (Módulos ES6) y un backend robusto en Java Spring Boot.",
+                proj_kardex_desc: "Gestión moderna de inventarios. Arquitectura desacoplada con Vanilla JS y Spring Boot API.",
 
-                proj_gestor_desc: "Solución ERP integral para la gestión de pequeñas empresas. Construido sobre una arquitectura monolítica que cubre inventarios, ventas y gestión de proveedores.",
+                proj_gestor_desc: "Solución ERP integral para gestión de pequeñas empresas. Inventarios, Ventas y Proveedores.",
 
                 proj_soap_title: "Gestor de Clientes SOAP",
-                proj_soap_desc: "Aplicación Java que implementa el protocolo SOAP para el intercambio seguro de información. Maneja análisis XML y validación estricta.",
+                proj_soap_desc: "Aplicación Java que implementa protocolo SOAP para intercambio seguro de información.",
 
-                proj_poke_desc: "Juego web interactivo conectado a APIs externas. Los usuarios adivinan el personaje basado en siluetas. Optimizado para móviles.",
+                proj_poke_desc: "Juego web interactivo conectado a APIs externas. Adivina el personaje por silueta.",
 
-                proj_hub_desc: "Sistema backend dinámico para portafolios. Construido con Spring Boot para gestionar datos de proyectos, autenticación y servicio de contenido.",
+                proj_hub_desc: "Sistema backend dinámico para portafolios. Spring Boot para gestión de datos y auth.",
 
-                edu_title: "Educación y Certificaciones",
-                edu_cloud_title: "Cloud Computing (AWS - Azure - GCP)",
-                edu_cloud_desc: "Capacitación en infraestructura en la nube, almacenamiento, gestión de identidad y administración de costos.",
+                edu_title: "Educación",
+                edu_cloud_title: "Cloud Computing (AWS/Azure)",
+                edu_cloud_desc: "Infraestructura cloud y almacenamiento.",
 
                 edu_hack_title: "Ciberseguridad y Hacking Ético",
-                edu_hack_desc: "Evaluación de vulnerabilidades, pruebas de penetración y protocolos de seguridad de red.",
+                edu_hack_desc: "Evaluación de vulnerabilidades y pentesting.",
 
-                edu_tech_title: "Título Técnico en Desarrollo de Software",
+                edu_tech_title: "Desarrollo de Software",
                 edu_tech_school: "Senati / Perú",
 
-                edu_eng_title: "Programa de Inglés (Avanzado)",
+                edu_eng_title: "Inglés (Avanzado)",
 
                 btn_print: "Descargar PDF / Imprimir"
             }
