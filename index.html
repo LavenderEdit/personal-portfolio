@@ -434,6 +434,18 @@
             transition: transform 0.3s;
         }
 
+        /* Placeholder for projects with no image */
+        .project-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
         .project-card:hover .project-img {
             transform: scale(1.05);
         }
@@ -1217,8 +1229,7 @@
                             <span>Java 17</span><span>Spring Boot</span><span>MySQL</span><span>Docker</span>
                         </div>
                         <div class="p-links">
-                            <a href="https://github.com/LionelPastranaMK500/Portfolio-Hub.git" target="_blank"
-                                class="btn-github">
+                            <a href="https://github.com/LavenderEdit/Portfolio" target="_blank" class="btn-github">
                                 <i class="fa-brands fa-github"></i> GitHub Code
                             </a>
                         </div>
@@ -1274,23 +1285,80 @@
                     </div>
                 </div>
 
+                <!-- TKOH-GRADING API -->
                 <div class="project-card">
-                    <div class="project-gallery" onclick="openModal(this)">
-                        <img src="./img/projects/Gestor Venta - Dashboard.png" alt="Gestor Venta" class="project-img">
+                    <div class="project-gallery">
+                        <div class="project-placeholder">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
                     </div>
                     <div class="project-content">
                         <div class="p-header">
-                            <div class="p-title">Gestor Venta</div>
-                            <span class="p-badge">Monolith</span>
+                            <div class="p-title">TKOH-GRADING API</div>
+                            <span class="p-badge">API</span>
                         </div>
-                        <p class="p-desc" data-i18n="proj_gestor_desc">
-                            Comprehensive ERP solution for small business management. Inventory, Sales, and Suppliers.
+                        <p class="p-desc" data-i18n="proj_grading_desc">
+                            Automated grading system backend. Optimized for handling student data and score processing.
                         </p>
                         <div class="p-tech">
-                            <span>PHP 8</span><span>MVC</span><span>MySQL</span><span>Bootstrap</span>
+                            <span>Java</span><span>Spring Boot</span><span>API REST</span>
                         </div>
                         <div class="p-links">
-                            <a href="https://github.com/LavenderEdit/gestorsimple" target="_blank" class="btn-github">
+                            <a href="https://github.com/LavenderEdit/grading" target="_blank" class="btn-github">
+                                <i class="fa-brands fa-github"></i> GitHub Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ATARAXIA API -->
+                <div class="project-card">
+                    <div class="project-gallery">
+                        <div class="project-placeholder">
+                            <i class="fa-solid fa-peace"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="p-header">
+                            <div class="p-title">ATARAXIA API</div>
+                            <span class="p-badge">Backend</span>
+                        </div>
+                        <p class="p-desc" data-i18n="proj_ataraxia_desc">
+                            Scalable backend service designed for high availability. Focus on clean architecture and
+                            performance.
+                        </p>
+                        <div class="p-tech">
+                            <span>NestJS</span><span>TypeScript</span><span>PostgreSQL</span>
+                        </div>
+                        <div class="p-links">
+                            <a href="https://github.com/LavenderEdit/ataraxia-api" target="_blank" class="btn-github">
+                                <i class="fa-brands fa-github"></i> GitHub Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTACTSHIP-MINI -->
+                <div class="project-card">
+                    <div class="project-gallery">
+                        <div class="project-placeholder">
+                            <i class="fa-solid fa-address-book"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="p-header">
+                            <div class="p-title">CONTACTSHIP-MINI</div>
+                            <span class="p-badge">Microservice</span>
+                        </div>
+                        <p class="p-desc" data-i18n="proj_contact_desc">
+                            Lightweight contact management microservice. Streamlined for quick integration and speed.
+                        </p>
+                        <div class="p-tech">
+                            <span>Spring Boot</span><span>JPA</span><span>H2/MySQL</span>
+                        </div>
+                        <div class="p-links">
+                            <a href="https://github.com/LavenderEdit/contactship-mini" target="_blank"
+                                class="btn-github">
                                 <i class="fa-brands fa-github"></i> GitHub Code
                             </a>
                         </div>
@@ -1368,12 +1436,10 @@
 
                 proj_kardex_desc: "Modern inventory management. Decoupled architecture with Vanilla JS and Spring Boot API.",
 
-                proj_gestor_desc: "Comprehensive ERP solution for small business management. Inventory, Sales, and Suppliers.",
-
-                proj_soap_title: "SOAP Client Manager",
-                proj_soap_desc: "Java-based application implementing the SOAP protocol for secure exchange of client information.",
-
-                proj_poke_desc: "Interactive web game interacting with external APIs. Users guess the character based on silhouettes.",
+                // New Projects Translations
+                proj_grading_desc: "Automated grading system backend. Optimized for handling student data and score processing.",
+                proj_ataraxia_desc: "Scalable backend service designed for high availability. Focus on clean architecture and performance.",
+                proj_contact_desc: "Lightweight contact management microservice. Streamlined for quick integration and speed.",
 
                 proj_hub_desc: "Dynamic portfolio backend system. Built with Spring Boot to manage project data and auth.",
 
@@ -1435,12 +1501,10 @@
 
                 proj_kardex_desc: "Gestión moderna de inventarios. Arquitectura desacoplada con Vanilla JS y Spring Boot API.",
 
-                proj_gestor_desc: "Solución ERP integral para gestión de pequeñas empresas. Inventarios, Ventas y Proveedores.",
-
-                proj_soap_title: "Gestor de Clientes SOAP",
-                proj_soap_desc: "Aplicación Java que implementa protocolo SOAP para intercambio seguro de información.",
-
-                proj_poke_desc: "Juego web interactivo conectado a APIs externas. Adivina el personaje por silueta.",
+                // New Projects Translations
+                proj_grading_desc: "Backend para sistema de calificación automatizado. Optimizado para manejo de datos de estudiantes.",
+                proj_ataraxia_desc: "Servicio backend escalable diseñado para alta disponibilidad. Enfoque en arquitectura limpia.",
+                proj_contact_desc: "Microservicio ligero para gestión de contactos. Simplificado para integración rápida y velocidad.",
 
                 proj_hub_desc: "Sistema backend dinámico para portafolios. Spring Boot para gestión de datos y auth.",
 
